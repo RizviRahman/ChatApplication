@@ -15,7 +15,7 @@ mongoose.connect(process.env.mongoDB, {
     useUnifiedTopology: true
 })
 .then(()=>{
-    console.log("Database connection successfull!")
+    console.log("Database connection successfull!");
 })
 .catch((err)=>{
     console.log(err);
@@ -28,7 +28,7 @@ app.set("view engine","ejs");
 
 app.use(express.static(path.join(__dirname,"public")));
 
-
+ 
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 
