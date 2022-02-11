@@ -3,6 +3,12 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+
+
+const { notFoundHandler, errorHandler } = require("./middlewares/common/errorHandler");
+const loginRouter = require("./router/loginRouter");
+const usersRouter = require("./router/usersRouter");
+const inboxRouter = require("./router/inboxRouter");
 // const { urlencoded } = require("body-parser");
 
 
@@ -33,12 +39,17 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 
 // ROUTING SETUP
+app.use('/', loginRouter);
+app.use('/users', usersRouter);
+app.use('/inbox', inboxRouter);
 
 
 
 
 // ERROR HANDLING
+app.use(notFoundHandler);
 
+app.use(errorHandler);
 
 
 app.listen(process.env.PORT, ()=>{
